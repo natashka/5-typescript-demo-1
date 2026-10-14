@@ -58,7 +58,7 @@ function generateWords(number:number, words?: string[]):string {
     }
     // First run
     if (!words) {
-        words.push('zero');
+        words=['zero'];
     }
     // If negative, prepend “minus”
     if (number < 0) {
