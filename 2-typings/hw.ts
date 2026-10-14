@@ -32,7 +32,7 @@ let TENTHS_LESS_THAN_HUNDRED:string[] = [
  */
 function toWords(number:string|number, asOrdinal?:boolean):string {
     let words:string;
-    let num:number = (typeof number === 'string')? parseInt(number, 10): number;
+    let num:number = (typeof number === 'string')? parseInt(number, 10): Math.trunc(number);
 
     if (!isFinite(num)) {
         throw new TypeError(
@@ -48,9 +48,9 @@ function toWords(number:string|number, asOrdinal?:boolean):string {
     return asOrdinal ? makeOrdinal(words) : words;
 }
 
-function generateWords(number:number):string {
-    let remainder:number, word:string,
-        words:string[] = arguments[1];
+function generateWords(number:number, words?: string[]):string {
+    let remainder:number = 0;
+    let word:string = '';
 
     // We’re done
     if (number === 0) {
@@ -58,7 +58,7 @@ function generateWords(number:number):string {
     }
     // First run
     if (!words) {
-        words = [];
+        words = 'zero';
     }
     // If negative, prepend “minus”
     if (number < 0) {
