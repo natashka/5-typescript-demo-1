@@ -32,14 +32,14 @@ interface Address {
     city: string;
     state: string;
     stateCode: string;
-    postalCode: number;
+    postalCode: string;
     coordinates: Coordinates;
     country: string;
 }
 
 interface Bank {
-    cardExpire: Date;
-    cardNumber: number;
+    cardExpire: string;
+    cardNumber: string;
     cardType: string;
     currency: string;
     iban: string;
@@ -50,7 +50,6 @@ interface CompanyInfo {
     name: string;
     title: string;
     address: Address;
-    country: string;
 }
 
 interface CryptoInfo {
@@ -74,7 +73,7 @@ interface User {
     age: number;
     gender: Gender;
     email: string;
-    birthDate: Date;
+    birthDate: string;
     image: string;
     bloodGroup: BloodGroup;
     height: number;
@@ -99,7 +98,7 @@ interface ResponseInfo {
     skip:number;
     limit:number;
 }
- async function fetchTodoData():Promise<User[]|undefined> {
+ async function fetchTodoData():Promise<User[]> {
     try {
         // 2. Pass the interface as a generic type parameter to axios.get()
         const response = await axios.get<ResponseInfo>('https://dummyjson.com/users');
@@ -119,4 +118,4 @@ interface ResponseInfo {
     }
 }
 
-fetchTodoData().then(ar => ar?.forEach(u => console.log(u.firstName)));
+fetchTodoData().then(ar => ar.forEach(u => console.log(u.firstName)));
