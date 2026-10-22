@@ -119,5 +119,4 @@ interface ResponseInfo {
     }
 }
 
-const res:User[] | undefined = fetchTodoData().then(ar => ar?.forEach(console.log));
-console.log(res);
+fetchTodoData().then(ar => ar?.forEach(u => console.log(u.firstName)));
