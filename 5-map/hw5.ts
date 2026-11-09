@@ -70,7 +70,7 @@ class SimpleHashMap<K extends string | number, V> {
     }
 
     public clear(): void {
-        this.buckets = [];
+        this.buckets = Array.from({ length: this.capacity }, () => []);
     }
 }
 
@@ -85,4 +85,6 @@ map.set("user_5", 90);
 console.log(map.get("user_1")); // 25
 map.delete("user_1");
 map.clear()
+console.log(map);
+map.set("user_55", 55);
 console.log(map);
