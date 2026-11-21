@@ -7,8 +7,8 @@ type notRequired<T> = {
     [K in keyof T]+?: T[K];
 } ;
 
-function pickObjectKeys<T, K extends keyof T>(obj:T, arr:K[]):notRequired<T> {
-    let newObj:notRequired<T> = {};
+function pickObjectKeys<T, K extends keyof T>(obj:T, arr:K[]):{ [P in K]: T[P] } {
+    let newObj = {} as { [P in K]: T[P] };
     for (let el of arr) {
         newObj[el] = obj[el];
     }
