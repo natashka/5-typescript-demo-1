@@ -16,7 +16,7 @@ interface IDifference {
     b: string;
 }
 
-function difference<T extends Object, U extends Object>(a:T, b: U):Pick<T, Exclude<keyof T, keyof U>> {
+function difference<T extends object, U extends object>(a:T, b: U):Pick<T, Exclude<keyof T, keyof U>> {
     type ex = Exclude<keyof T, keyof U>;
 
     type pickType = Pick<T, ex>;
@@ -25,7 +25,7 @@ function difference<T extends Object, U extends Object>(a:T, b: U):Pick<T, Exclu
     //const result: Record<string, unknown> = {};
 
     for (const key of Object.keys(a)) {
-        if (!(key in b)) {
+        if (!(Object.prototype.hasOwnProperty.call(b, key))) {
             result[key] = a[key as keyof T];
         }
     }
